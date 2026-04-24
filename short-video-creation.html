@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>短视频创作实战 - 李哥AI加油站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0a14;color:#e0e0e0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 60px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo span{font-size:28px;margin-right:6px}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:15px;color:#9999bb;transition:color 0.3s}
+.nav-links a:hover{color:#fff}
+.tutorial-page{min-height:100vh;padding-top:80px}
+.tutorial-header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:80px 60px;text-align:center}
+.tutorial-header h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.tutorial-header .meta{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:#aaaacc}
+.tutorial-body{max-width:900px;margin:0 auto;padding:60px 40px}
+.content h2{font-size:24px;font-weight:800;color:#fff;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.content h3{font-size:18px;font-weight:700;color:#f5a623;margin:28px 0 12px}
+.content p{font-size:15px;color:#aaaacc;line-height:1.85;margin-bottom:12px}
+.content pre{background:#0d0d1c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin:16px 0;overflow-x:auto;font-size:13px;color:#e0e0e0;font-family:"Fira Code",monospace}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content th{background:rgba(245,166,35,0.1);color:#f5a623;padding:10px 14px;text-align:left;font-weight:600}
+.content td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#aaaacc}
+.content ul{list-style:none;margin-bottom:16px}
+.content li{padding:5px 0;font-size:14px;color:#8888aa;padding-left:20px;position:relative;line-height:1.7}
+.content li::before{content:"•";color:#f5a623;position:absolute;left:0}
+.toc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin-bottom:48px}
+.toc h3{font-size:16px;font-weight:700;color:#f5a623;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;color:#8888aa}
+.toc li::before{content:counter(toc) ". ";color:#f5a623;font-weight:600}
+.toc li a{color:#8888aa}
+.toc li a:hover{color:#f5a623}
+.note{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14px;color:#f5a623}
+.footer{background:#070710;border-top:1px solid rgba(255,255,255,0.05);padding:32px 60px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:#5555777}
+.footer-contact{display:flex;gap:16px}
+.footer-contact-item{font-size:13px;color:#7777aa}
+.nav-bottom{display:flex;justify-content:space-between;padding:40px 0;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.nav-btn:hover{border-color:#f5a623;color:#f5a623}
+.nav-btn.next{color:#f5a623}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="../index.html#services">服务项目</a>
+<a href="../index.html#courses">教程中心</a>
+<a href="../index.html#pricing">价格方案</a>
+<a href="../index.html#about">关于李哥</a>
+</div>
+<a href="../index.html" class="nav-btn" style="padding:8px 18px;font-size:14px">← 返回首页</a>
+</nav>
+
+<div class="tutorial-page">
+<div class="tutorial-header">
+<div class="tag" style="color:#88aaff;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:14px">🎬 短视频创作</div>
+<h1>短视频创作实战</h1>
+<p style="font-size:16px;color:#aaaacc;max-width:600px;margin:0 auto">小红书、抖音内容策划，AI脚本创作，CapCut/剪映剪辑，流量打法全公开</p>
+<div class="meta"><span>⭐⭐ 进阶</span><span>⏱ 约90分钟</span><span>👨‍💼 李哥</span></div>
+</div>
+
+<div class="tutorial-body content">
+<div class="toc">
+<h3>📖 目录</h3>
+<ol>
+<li><a href="#topic">内容策划：爆款选题公式</a></li>
+<li><a href="#script">AI辅助脚本创作</a></li>
+<li><a href="#jianying">剪映剪辑教程</a></li>
+<li><a href="#operation">平台运营技巧</a></li>
+<li><a href="#ai">AI工具辅助</a></li>
+<li><a href="#data">数据分析</a></li>
+</ol>
+</div>
+
+<h2 id="topic">一、内容策划：爆款选题公式</h2>
+
+<h3>1.1 选题三问</h3>
+<ul>
+<li><strong>用户为什么要看？</strong> — 提供了什么价值（实用/情绪/审美）</li>
+<li><strong>为什么现在看？</strong> — 时效性、热点关联</li>
+<li><strong>看完为什么要关注？</strong> — 差异化、记忆点</li>
+</ul>
+
+<h3>1.2 爆款选题模型</h3>
+<table>
+<tr><th>类型</th><th>模板</th><th>例子</th></tr>
+<tr><td>实用价值型</td><td>[技能/方法论] + [效果/收益]</td><td>"3个ChatGPT提示词，让文案效率提升10倍"</td></tr>
+<tr><td>情绪共鸣型</td><td>[痛点场景] + [情感宣泄]</td><td>"30岁转行互联网，被说太晚..."</td></tr>
+<tr><td>热点借势型</td><td>[热点事件] + [自己角度]</td><td>"淄博烧烤爆火，总结5个蹭热点方向"</td></tr>
+</table>
+
+<h3>1.3 各平台选题差异</h3>
+<table>
+<tr><th>平台</th><th>内容倾向</th><th>爆款类型</th></tr>
+<tr><td>小红书</td><td>年轻女性为主</td><td>干货教程、好物种草、生活方式</td></tr>
+<tr><td>抖音</td><td>全年龄段</td><td>剧情搞笑、技能展示、热点资讯</td></tr>
+<tr><td>微信视频号</td><td>中老年为主</td><td>温情故事、正能量、新闻资讯</td></tr>
+</table>
+
+<h2 id="script">二、AI辅助脚本创作</h2>
+
+<h3>2.1 爆款标题公式</h3>
+<ul>
+<li><strong>数字型：</strong>"5个方法教你..."、"3分钟搞定..."、"99%的人不知道..."</li>
+<li><strong>对比型：</strong>"别人vs你的差别"；"之前vs之后"</li>
+<li><strong>悬念型：</strong>"原来这才是..."、"没想到这么容易..."</li>
+</ul>
+
+<h3>2.2 脚本结构模板（60秒口播）</h3>
+<pre>【开场3秒】制造钩子
+"你知道吗？90%的小红书博主都在用这个方法..."
+
+【15秒】问题/痛点
+"很多人发笔记没人看，原因是..."
+
+【25秒】解决方案
+"今天教你3步，第一步..."
+
+【15秒】价值展示
+"用这个方法，我3天涨了1000粉..."
+
+【2秒】引导关注
+"关注我，每天分享干货"</pre>
+
+<h3>2.3 多平台内容复用</h3>
+<table>
+<tr><th>原始素材</th><th>小红书</th><th>抖音</th></tr>
+<tr><td>10分钟口播</td><td>剪辑精华3段</td><td>剪辑精华3段</td></tr>
+<tr><td>一篇图文</td><td>截图+重点</td><td>翻拍/口播</td></tr>
+<tr><td>一组图片</td><td>9宫格</td><td>轮播图视频</td></tr>
+</table>
+
+<h2 id="jianying">三、剪映（CapCut）剪辑教程</h2>
+
+<h3>3.1 基础操作</h3>
+<ul>
+<li><strong>分割视频：</strong>移动播放头 → 按S键或点击"分割" → 删除不需要片段</li>
+<li><strong>添加转场：</strong>点击片段连接处 → 选择转场效果（推荐闪黑、溶解）→ 调整时长0.3-0.5秒</li>
+<li><strong>调色：</strong>选中片段 → 滤镜/调节 → 亮度+10~+20、对比度+10~+15</li>
+</ul>
+
+<h3>3.2 字幕制作</h3>
+<ul>
+<li>点击"文字" → "自动字幕" → 选择音频 → 等待识别 → 修正错误字</li>
+<li>花字：点击"文字" → "花字" → 选择模板 → 修改文字</li>
+</ul>
+
+<h3>3.3 音频处理</h3>
+<ul>
+<li>背景音乐：点击"音频" → "音乐" → 拖入时间轴 → 调整音量30%-50%</li>
+<li>降噪：选中音频 → "降噪" → 选择级别</li>
+</ul>
+
+<h3>3.4 竖屏横屏切换</h3>
+<table>
+<tr><th>格式</th><th>平台</th><th>导出设置</th></tr>
+<tr><td>竖屏9:16</td><td>抖音、小红书</td><td>1080×1920</td></tr>
+<tr><td>横屏16:9</td><td>B站、西瓜视频</td><td>1920×1080</td></tr>
+</table>
+
+<h2 id="operation">四、平台运营技巧</h2>
+
+<h3>4.1 小红书运营</h3>
+<ul>
+<li><strong>发布时间：</strong>早间7:00-9:00、午间12:00-14:00、晚间18:00-22:00</li>
+<li><strong>发布频率：</strong>新账号每天1篇，连续7天；稳定后每天1-2篇</li>
+<li><strong>标签策略：</strong>3-5个相关话题 + 1个热门话题 + 1个细分垂类</li>
+</ul>
+
+<h3>4.2 抖音运营</h3>
+<ul>
+<li><strong>完播率优化：</strong>前3秒必须有钩子，时长15-60秒最佳，节奏紧凑</li>
+<li><strong>互动引导：</strong>结尾提问、引导评论、设置悬念促转发</li>
+</ul>
+
+<h3>4.3 违规红线</h3>
+<ul>
+<li>绝对化词：最好、第一、唯一</li>
+<li>医疗/金融敏感词</li>
+<li>虚假夸大宣传</li>
+<li>搬运原创内容</li>
+<li>刷量买赞行为</li>
+</ul>
+
+<h2 id="ai">五、AI工具辅助</h2>
+
+<h3>5.1 AI生成配图</h3>
+<pre>封面图Prompt公式：
+[视频主题] + 高清摄影风格 + 大字标题 + 高对比度 + [平台]封面风格</pre>
+
+<h3>5.2 AI配音</h3>
+<p>剪映自带"文字转语音"，或使用第三方TTS工具（需配置API）。</p>
+
+<h2 id="data">六、数据分析</h2>
+<table>
+<tr><th>平台</th><th>核心指标</th><th>参考值</th></tr>
+<tr><td>小红书</td><td>点赞/收藏比</td><td>>10%为佳</td></tr>
+<tr><td>抖音</td><td>完播率</td><td>>30%为佳</td></tr>
+<tr><td>B站</td><td>播放时长</td><td>>60%为佳</td></tr>
+</table>
+
+<div class="note">📚 下一篇：<a href="ai-agent-development.html" style="color:#f5a623">《智能体开发》→</a></div>
+</div>
+
+<div class="nav-bottom">
+<a href="ai-image-generation.html" class="nav-btn">← AI图片生成</a>
+<a href="ai-agent-development.html" class="nav-btn next">下一篇：智能体开发 →</a>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
