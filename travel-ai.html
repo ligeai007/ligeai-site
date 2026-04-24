@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>旅行社AI运营实战课 - 李哥AI加油站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0a14;color:#e0e0e0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 60px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo span{font-size:28px;margin-right:6px}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:15px;color:#9999bb;transition:color 0.3s}
+.nav-links a:hover{color:#fff}
+.tutorial-page{min-height:100vh;padding-top:80px}
+.tutorial-header{background:linear-gradient(135deg,#1a0f2e,#2d1b4e,#1a0f2e);padding:80px 60px;text-align:center}
+.tutorial-header h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.tutorial-header .meta{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:#aaaacc}
+.tutorial-body{max-width:900px;margin:0 auto;padding:60px 40px}
+.content h2{font-size:24px;font-weight:800;color:#fff;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.content h3{font-size:18px;font-weight:700;color:#f5a623;margin:28px 0 12px}
+.content p{font-size:15px;color:#aaaacc;line-height:1.85;margin-bottom:12px}
+.content pre{background:#0d0d1c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin:16px 0;overflow-x:auto;font-size:13px;color:#e0e0e0;font-family:"Fira Code",monospace}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content th{background:rgba(245,166,35,0.1);color:#f5a623;padding:10px 14px;text-align:left;font-weight:600}
+.content td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#aaaacc}
+.content ul{list-style:none;margin-bottom:16px}
+.content li{padding:5px 0;font-size:14px;color:#8888aa;padding-left:20px;position:relative;line-height:1.7}
+.content li::before{content:"•";color:#f5a623;position:absolute;left:0}
+.toc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin-bottom:48px}
+.toc h3{font-size:16px;font-weight:700;color:#f5a623;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;color:#8888aa}
+.toc li::before{content:counter(toc) ". ";color:#f5a623;font-weight:600}
+.toc li a{color:#8888aa}
+.toc li a:hover{color:#f5a623}
+.note{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14px;color:#f5a623}
+.footer{background:#070710;border-top:1px solid rgba(255,255,255,0.05);padding:32px 60px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:#5555777}
+.footer-contact{display:flex;gap:16px}
+.footer-contact-item{font-size:13px;color:#7777aa}
+.nav-bottom{display:flex;justify-content:space-between;padding:40px 0;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.nav-btn:hover{border-color:#f5a623;color:#f5a623}
+.nav-btn.next{color:#f5a623}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="../index.html#services">服务项目</a>
+<a href="../index.html#courses">教程中心</a>
+<a href="../index.html#pricing">价格方案</a>
+<a href="../index.html#about">关于李哥</a>
+</div>
+<a href="../index.html" class="nav-btn" style="padding:8px 18px;font-size:14px">← 返回首页</a>
+</nav>
+
+<div class="tutorial-page">
+<div class="tutorial-header">
+<div class="tag" style="color:#22cc66;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:14px">✈️ 旅游业务AI化</div>
+<h1>旅行社AI运营实战课</h1>
+<p style="font-size:16px;color:#aaaacc;max-width:600px;margin:0 auto">旅行社地接全流程AI运营，客群获取、行程规划、智能客服、携程运营指南</p>
+<div class="meta"><span>⭐⭐⭐ 高阶</span><span>⏱ 约120分钟</span><span>👨‍💼 李哥</span></div>
+</div>
+
+<div class="tutorial-body content">
+<div class="toc">
+<h3>📖 目录</h3>
+<ol>
+<li><a href="#product">产品体系设计</a></li>
+<li><a href="#ctrip">携程运营实战</a></li>
+<li><a href="#douyin">抖音获客攻略</a></li>
+<li><a href="#xiaohongshu">小红书种草</a></li>
+<li><a href="#ai">行程规划AI化</a></li>
+<li><a href="#feishu">飞书自动化</a></li>
+</ol>
+</div>
+
+<h2 id="product">一、产品体系设计</h2>
+
+<h3>1.1 "2+N"地接模式</h3>
+<pre><code>第1天：单接 + 自由活动（无团队行程）
+     → 推荐成都自由行景点（宽窄巷子、锦里等）
+
+中间N天：跟团游览
+     → 必去：熊猫基地、三星堆、九寨沟、黄龙、都江堰等
+
+最后1天：单送
+     → 送双流机场/成都东站
+     → 包含首尾共2晚成都舒适型/经济型酒店</code></pre>
+
+<h3>1.2 三大产品类型</h3>
+<table>
+<tr><th>产品</th><th>人数</th><th>车型</th><th>自由度</th></tr>
+<tr><td>跟团游</td><td>20-40人</td><td>大巴</td><td>固定</td></tr>
+<tr><td>拼小团</td><td>2-8人</td><td>7-9座商务</td><td>可协商停车</td></tr>
+<tr><td>定制包团</td><td>1人起</td><td>专车</td><td>完全定制</td></tr>
+</table>
+
+<h2 id="ctrip">二、携程运营实战</h2>
+
+<h3>2.1 后台入口</h3>
+<ul>
+<li>快捷入口：<a href="https://imvendor.ctrip.com/main?currentTab=BC" style="color:#f5a623">imvendor.ctrip.com</a></li>
+<li>备用入口：vbooking.ctrip.com</li>
+</ul>
+
+<h3>2.2 ⚠️ 重要规则</h3>
+<table>
+<tr><th>违规类型</th><th>后果</th><th>防范</th></tr>
+<tr><td>发送联系方式</td><td>扣分/下架</td><td>严格使用平台话术</td></tr>
+<tr><td>虚假宣传</td><td>降权/处罚</td><td>使用平台统一描述</td></tr>
+<tr><td>刷单炒信</td><td>永久封号</td><td>真实交易记录</td></tr>
+</table>
+
+<h3>2.3 合规话术模板</h3>
+<pre>您好！感谢您的咨询~
+关于您的问题：{回答内容}
+如需进一步了解，欢迎随时咨询，我们的客服团队7x24小时在线~</pre>
+
+<h3>2.4 响应规范</h3>
+<ul>
+<li><strong>⏱️ 90秒内</strong>必须回复</li>
+<li>非工作时间使用自动回复模板</li>
+</ul>
+
+<h2 id="douyin">三、抖音获客攻略</h2>
+
+<h3>3.1 内容矩阵规划</h3>
+<table>
+<tr><th>内容类型</th><th>占比</th><th>作用</th></tr>
+<tr><td>景点实拍</td><td>40%</td><td>展示真实体验</td></tr>
+<tr><td>攻略干货</td><td>30%</td><td>提供实用价值</td></tr>
+<tr><td>趣味故事</td><td>20%</td><td>增强人设</td></tr>
+<tr><td>热点借势</td><td>10%</td><td>获取流量</td></tr>
+</table>
+
+<h3>3.2 爆款视频公式</h3>
+<pre>【开头3秒】[惊艳画面] + "你以为九寨沟只是看水？"
+【中间】[多角度实拍] + [导游讲解]
+【结尾】[实用信息] + "关注我，带你玩转四川"</pre>
+
+<h2 id="xiaohongshu">四、小红书种草</h2>
+
+<h3>4.1 高流量选题</h3>
+<ul>
+<li>"成都出发3天2晚，九寨沟真实体验"</li>
+<li>"九寨沟 vs 黄龙，到底去哪个？"</li>
+<li>"第一次去四川，必去的6个景点"</li>
+</ul>
+
+<h3>4.2 笔记结构模板</h3>
+<pre>【标题】：包含关键词+数字+情绪词
+        "九寨沟3天2晚真实花费｜附详细行程+防坑指南"
+
+【正文】：
+1. 开头：个人体验+感受
+2. 行程：按天详细描述
+3. 花费：明细清单
+4. 避坑：3-5条经验
+5. 结尾：引导互动+关注</pre>
+
+<h2 id="ai">五、行程规划AI化</h2>
+
+<h3>5.1 AI规划流程</h3>
+<pre><code>客人需求 → AI分析 → travel-planner-pro生成行程
+    → 人工审核 → 发送方案 → 跟进签约
+    → 生成确认单PDF</code></pre>
+
+<h3>5.2 行程确认单模板</h3>
+<pre><code>【行程确认单】
+客人姓名：XXX  联系电话：XXX
+出行日期：XXX - XXX
+
+行程安排：
+Day1：接机 → 入住成都XX酒店 → 自由活动
+Day2：酒店 → 九寨沟景区（游览6-8h）
+Day3：沟口 → 黄龙景区 → 返程成都
+
+费用明细：
+- 成人：XXX元/人 × X人 = XXX元
+- 儿童：XXX元/人 × X人 = XXX元
+合计：XXX元
+
+包含项目：
+✓ 行程内交通 ✓ 2晚住宿 ✓ 景区门票+观光车
+✓ 2早2正餐 ✓ 导游服务</code></pre>
+
+<h2 id="feishu">六、飞书自动化</h2>
+
+<h3>6.1 客户管理表设计</h3>
+<table>
+<tr><th>字段</th><th>类型</th><th>说明</th></tr>
+<tr><td>客户姓名</td><td>文本</td><td></td></tr>
+<tr><td>联系方式</td><td>电话</td><td></td></tr>
+<tr><td>出行日期</td><td>日期</td><td></td></tr>
+<tr><td>人数</td><td>数字</td><td></td></tr>
+<tr><td>线路</td><td>单选</td><td>九寨沟/峨眉山/定制</td></tr>
+<tr><td>状态</td><td>单选</td><td>咨询中/已签约/已出行</td></tr>
+</table>
+
+<h3>6.2 自动化场景</h3>
+<ul>
+<li>当"状态"改为"已签约" → 发送通知给财务</li>
+<li>当"跟进日期"到期 → 提醒负责人</li>
+<li>当"负责销售"变更 → 更新统计看板</li>
+</ul>
+
+<div class="note">📚 下一篇：<a href="office-automation.html" style="color:#f5a623">《自动化办公》→</a></div>
+</div>
+
+<div class="nav-bottom">
+<a href="ai-agent-development.html" class="nav-btn">← 智能体开发</a>
+<a href="office-automation.html" class="nav-btn next">下一篇：自动化办公 →</a>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
