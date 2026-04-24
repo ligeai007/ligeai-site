@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自动化办公 - 李哥AI加油站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0a14;color:#e0e0e0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 60px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo span{font-size:28px;margin-right:6px}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:15px;color:#9999bb;transition:color 0.3s}
+.nav-links a:hover{color:#fff}
+.tutorial-page{min-height:100vh;padding-top:80px}
+.tutorial-header{background:linear-gradient(135deg,#0a192f,#0d2137,#0a192f);padding:80px 60px;text-align:center}
+.tutorial-header h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.tutorial-header .meta{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:#aaaacc}
+.tutorial-body{max-width:900px;margin:0 auto;padding:60px 40px}
+.content h2{font-size:24px;font-weight:800;color:#fff;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.content h3{font-size:18px;font-weight:700;color:#f5a623;margin:28px 0 12px}
+.content p{font-size:15px;color:#aaaacc;line-height:1.85;margin-bottom:12px}
+.content pre{background:#0d0d1c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin:16px 0;overflow-x:auto;font-size:13px;color:#e0e0e0;font-family:"Fira Code",monospace}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content th{background:rgba(245,166,35,0.1);color:#f5a623;padding:10px 14px;text-align:left;font-weight:600}
+.content td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#aaaacc}
+.content ul{list-style:none;margin-bottom:16px}
+.content li{padding:5px 0;font-size:14px;color:#8888aa;padding-left:20px;position:relative;line-height:1.7}
+.content li::before{content:"•";color:#f5a623;position:absolute;left:0}
+.toc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin-bottom:48px}
+.toc h3{font-size:16px;font-weight:700;color:#f5a623;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;color:#8888aa}
+.toc li::before{content:counter(toc) ". ";color:#f5a623;font-weight:600}
+.toc li a{color:#8888aa}
+.toc li a:hover{color:#f5a623}
+.note{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14px;color:#f5a623}
+.footer{background:#070710;border-top:1px solid rgba(255,255,255,0.05);padding:32px 60px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:#5555777}
+.footer-contact{display:flex;gap:16px}
+.footer-contact-item{font-size:13px;color:#7777aa}
+.nav-bottom{display:flex;justify-content:space-between;padding:40px 0;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.nav-btn:hover{border-color:#f5a623;color:#f5a623}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="../index.html#services">服务项目</a>
+<a href="../index.html#courses">教程中心</a>
+<a href="../index.html#pricing">价格方案</a>
+<a href="../index.html#about">关于李哥</a>
+</div>
+<a href="../index.html" class="nav-btn" style="padding:8px 18px;font-size:14px">← 返回首页</a>
+</nav>
+
+<div class="tutorial-page">
+<div class="tutorial-header">
+<div class="tag" style="color:#f5a623;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:14px">💼 自动化办公</div>
+<h1>自动化办公</h1>
+<p style="font-size:16px;color:#aaaacc;max-width:600px;margin:0 auto">飞书文档、多维表格自动化，数据收集整理，报表生成，效率提升10倍+</p>
+<div class="meta"><span>⭐⭐ 进阶</span><span>⏱ 约90分钟</span><span>👨‍💼 李哥</span></div>
+</div>
+
+<div class="tutorial-body content">
+<div class="toc">
+<h3>📖 目录</h3>
+<ol>
+<li><a href="#doc">飞书文档AI化</a></li>
+<li><a href="#bitable">飞书多维表格实战</a></li>
+<li><a href="#form">数据收集自动化</a></li>
+<li><a href="#report">报表自动生成</a></li>
+<li><a href="#auto">飞书自动化流程</a></li>
+<li><a href="#tips">效率提升技巧</a></li>
+</ol>
+</div>
+
+<h2 id="doc">一、飞书文档AI化</h2>
+
+<h3>1.1 规范文档模板</h3>
+<pre><code># [文档标题]
+
+## 一、基本信息
+- 创建时间：
+- 负责人：
+- 更新频率：
+
+## 二、核心内容
+### 2.1 [模块一]
+内容...
+
+## 三、修订记录
+| 日期 | 版本 | 修订内容 | 修订人 |
+|------|------|---------|--------|</code></pre>
+
+<h3>1.2 AI辅助写作</h3>
+<ul>
+<li><strong>会议纪要AI生成：</strong>提取讨论内容、决策事项、下一步行动</li>
+<li><strong>文案润色：</strong>语言精炼、保持专业商务风格</li>
+<li><strong>多语言翻译：</strong>保持格式、使用商务英语表达</li>
+</ul>
+
+<h2 id="bitable">二、飞书多维表格实战</h2>
+
+<h3>2.1 字段类型选择</h3>
+<table>
+<tr><th>字段类型</th><th>用途</th><th>示例</th></tr>
+<tr><td>文本</td><td>姓名、标题</td><td>客户姓名</td></tr>
+<tr><td>数字</td><td>金额、数量</td><td>订单金额</td></tr>
+<tr><td>单选</td><td>状态、类型</td><td>跟进状态</td></tr>
+<tr><td>日期</td><td>时间记录</td><td>下次跟进日期</td></tr>
+<tr><td>人员</td><td>负责人</td><td>销售</td></tr>
+<tr><td>复选框</td><td>待办标记</td><td>已回访</td></tr>
+</table>
+
+<h3>2.2 视图切换</h3>
+<ul>
+<li><strong>看板视图：</strong>按状态分组，适合跟进流程</li>
+<li><strong>画廊视图：</strong>卡片式展示，适合产品展示</li>
+<li><strong>日历视图：</strong>按日期展示，适合日程安排</li>
+<li><strong>甘特图：</strong>时间线展示，适合项目进度</li>
+</ul>
+
+<h2 id="form">三、数据收集自动化</h2>
+
+<h3>3.1 飞书表单</h3>
+<pre><code>客户信息收集表单：
+□ 姓名（文本，必填）
+□ 手机号（电话，必填）
+□ 意向线路（单选：九寨沟/峨眉山/其他）
+□ 预计出行日期（日期）
+□ 人数（数字）
+□ 预算范围（单选）
+□ 备注（多行文本）</code></pre>
+
+<h3>3.2 表单 → 多维表格联动</h3>
+<pre><code>客人填写表单 → 数据自动进入多维表格 → 触发自动化流程</code></pre>
+
+<h2 id="report">四、报表自动生成</h2>
+
+<h3>4.1 日报模板</h3>
+<pre><code># [部门]日报 - [日期]
+
+## 今日完成
+- [ ] 任务1：描述
+- [ ] 任务2：描述
+
+## 明日计划
+- [ ] 任务1：描述
+
+## 数据指标
+| 指标 | 今日 | 环比 |
+|------|------|------|
+| 咨询量 | XX | +X% |
+| 签约数 | XX | +X% |</code></pre>
+
+<h3>4.2 AI生成报告</h3>
+<ul>
+<li>从数据中提取关键指标</li>
+<li>计算环比变化</li>
+<li>识别异常数据</li>
+<li>给出总结分析</li>
+</ul>
+
+<h2 id="auto">五、飞书自动化流程</h2>
+
+<h3>5.1 实用自动化场景</h3>
+
+<p><strong>场景1：新客户自动分配</strong></p>
+<pre><code>触发：当「客户意向」改为"高意向"
+动作：
+1. 根据「意向线路」分配负责销售
+2. 发送通知给对应销售
+3. 创建跟进任务（截止日期：3天后）
+4. 设置到期提醒</code></pre>
+
+<p><strong>场景2：签约自动通知财务</strong></p>
+<pre><code>触发：当「状态」改为"已签约"
+动作：
+1. 发送消息给财务群
+2. 更新统计看板</code></pre>
+
+<p><strong>场景3：超时未跟进提醒</strong></p>
+<pre><code>触发：每日上午10:00检查
+条件：「跟进日期」< 今日 且 「状态」= "咨询中"
+动作：提醒负责销售 + 标注超时</code></pre>
+
+<h2 id="tips">六、效率提升技巧</h2>
+
+<h3>6.1 快捷键</h3>
+<table>
+<tr><th>快捷键</th><th>功能</th></tr>
+<tr><td>Ctrl + /</td><td>打开命令面板</td></tr>
+<tr><td>Ctrl + Shift + V</td><td>粘贴为纯文本</td></tr>
+<tr><td>@</td><td>提及人员/文档</td></tr>
+<tr><td>/</td><td>插入模块</td></tr>
+</table>
+
+<h3>6.2 常用工具组合</h3>
+<table>
+<tr><th>场景</th><th>工具组合</th></tr>
+<tr><td>文档协作</td><td>飞书文档 + AI写作</td></tr>
+<tr><td>客户管理</td><td>飞书多维表格 + 表单 + 自动化</td></tr>
+<tr><td>会议记录</td><td>飞书妙记 + AI纪要</td></tr>
+<tr><td>数据分析</td><td>多维表格 + BI图表</td></tr>
+<tr><td>任务跟进</td><td>飞书日程 + 多维表格 + 提醒</td></tr>
+</table>
+
+<div class="note">🎉 恭喜完成全部教程！继续探索更多AI技能 → <a href="openclaw-setup.html" style="color:#f5a623">返回OpenClaw配置</a></div>
+</div>
+
+<div class="nav-bottom">
+<a href="travel-ai.html" class="nav-btn">← 旅游业务AI化</a>
+<a href="../index.html#courses" class="nav-btn">← 返回教程中心</a>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
