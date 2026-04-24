@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能体开发 - 李哥AI加油站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0a14;color:#e0e0e0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 60px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo span{font-size:28px;margin-right:6px}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:15px;color:#9999bb;transition:color 0.3s}
+.nav-links a:hover{color:#fff}
+.tutorial-page{min-height:100vh;padding-top:80px}
+.tutorial-header{background:linear-gradient(135deg,#0d1b2a,#1b263b,#415a77);padding:80px 60px;text-align:center}
+.tutorial-header h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.tutorial-header .meta{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:#aaaacc}
+.tutorial-body{max-width:900px;margin:0 auto;padding:60px 40px}
+.content h2{font-size:24px;font-weight:800;color:#fff;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.content h3{font-size:18px;font-weight:700;color:#f5a623;margin:28px 0 12px}
+.content p{font-size:15px;color:#aaaacc;line-height:1.85;margin-bottom:12px}
+.content pre{background:#0d0d1c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin:16px 0;overflow-x:auto;font-size:13px;color:#e0e0e0;font-family:"Fira Code",monospace}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content th{background:rgba(245,166,35,0.1);color:#f5a623;padding:10px 14px;text-align:left;font-weight:600}
+.content td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#aaaacc}
+.content ul{list-style:none;margin-bottom:16px}
+.content li{padding:5px 0;font-size:14px;color:#8888aa;padding-left:20px;position:relative;line-height:1.7}
+.content li::before{content:"•";color:#f5a623;position:absolute;left:0}
+.toc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin-bottom:48px}
+.toc h3{font-size:16px;font-weight:700;color:#f5a623;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;color:#8888aa}
+.toc li::before{content:counter(toc) ". ";color:#f5a623;font-weight:600}
+.toc li a{color:#8888aa}
+.toc li a:hover{color:#f5a623}
+.note{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14px;color:#f5a623}
+.footer{background:#070710;border-top:1px solid rgba(255,255,255,0.05);padding:32px 60px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:#5555777}
+.footer-contact{display:flex;gap:16px}
+.footer-contact-item{font-size:13px;color:#7777aa}
+.nav-bottom{display:flex;justify-content:space-between;padding:40px 0;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.nav-btn:hover{border-color:#f5a623;color:#f5a623}
+.nav-btn.next{color:#f5a623}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="../index.html#services">服务项目</a>
+<a href="../index.html#courses">教程中心</a>
+<a href="../index.html#pricing">价格方案</a>
+<a href="../index.html#about">关于李哥</a>
+</div>
+<a href="../index.html" class="nav-btn" style="padding:8px 18px;font-size:14px">← 返回首页</a>
+</nav>
+
+<div class="tutorial-page">
+<div class="tutorial-header">
+<div class="tag" style="color:#88aaff;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:14px">📊 智能体开发</div>
+<h1>多Agent系统搭建与工作流设计</h1>
+<p style="font-size:16px;color:#aaaacc;max-width:600px;margin:0 auto">多Agent系统搭建，子任务分发与调度，自动化工作流设计，提升团队效能</p>
+<div class="meta"><span>⭐⭐⭐ 高阶</span><span>⏱ 约120分钟</span><span>👨‍💼 李哥</span></div>
+</div>
+
+<div class="tutorial-body content">
+<div class="toc">
+<h3>📖 目录</h3>
+<ol>
+<li><a href="#what">什么是多Agent系统</a></li>
+<li><a href="#config">OpenClaw多Agent配置</a></li>
+<li><a href="#dispatch">任务分发机制</a></li>
+<li><a href="#rules">调度规则设计</a></li>
+<li><a href="#feishu">飞书机器人集成</a></li>
+<li><a href="#perf">性能优化</a></li>
+<li><a href="#case">实战案例</a></li>
+</ol>
+</div>
+
+<h2 id="what">一、什么是多Agent系统</h2>
+
+<h3>1.1 经典架构模型</h3>
+<ul>
+<li><strong>星型架构（推荐）：</strong>总管家负责任务分解，子Agent执行具体任务，适合3-5个Agent</li>
+<li><strong>链式架构：</strong>每个Agent处理后传递给下一个，适合流程式任务</li>
+<li><strong>网状架构：</strong>Agent之间可以互相通信，适合复杂协作</li>
+</ul>
+
+<h2 id="config">二、OpenClaw多Agent配置</h2>
+
+<h3>2.1 基础配置</h3>
+<pre><code>{
+  "agents": {
+    "list": [
+      {
+        "id": "002",
+        "name": "客户增长部（犀鸟组）",
+        "workspace": "~/.openclaw/workspace-002",
+        "model": "minimax/MiniMax-M2.7"
+      },
+      {
+        "id": "003",
+        "name": "品牌内容部（灵鹊组）",
+        "workspace": "~/.openclaw/workspace-003",
+        "model": "minimax/MiniMax-M2.7"
+      },
+      {
+        "id": "005",
+        "name": "交付保障部（磐石组）",
+        "workspace": "~/.openclaw/workspace-005",
+        "model": "minimax/MiniMax-M2.7"
+      }
+    ]
+  }
+}</code></pre>
+
+<h3>2.2 子Agent工作区</h3>
+<pre><code>mkdir ~/.openclaw/workspace-002
+mkdir ~/.openclaw/workspace-003
+mkdir ~/.openclaw/workspace-005</code></pre>
+
+<h3>2.3 技能分配示例</h3>
+<table>
+<tr><th>Agent</th><th>技能配置</th></tr>
+<tr><td>002犀鸟组</td><td>sales-manager, battery-customer-research, ecommerce-master</td></tr>
+<tr><td>003灵鹊组</td><td>douyin-publisher, xiaohongshu-post, image-gen, tech-news-daily</td></tr>
+<tr><td>005磐石组</td><td>travel-planner-pro, juhe-train-tickets, income-tracker</td></tr>
+</table>
+
+<h2 id="dispatch">三、任务分发机制</h2>
+
+<h3>3.1 任务分发对照表</h3>
+<table>
+<tr><th>任务类型</th><th>分发Agent</th><th>说明</th></tr>
+<tr><td>旅行咨询/报价</td><td>005磐石组</td><td>行程定制、景点推荐</td></tr>
+<tr><td>火车票/门票</td><td>005磐石组</td><td>查询预订</td></tr>
+<tr><td>获客/转化/合同</td><td>002犀鸟组</td><td>客服、签约</td></tr>
+<tr><td>小红书图文发布</td><td>003灵鹊组</td><td>自动发布</td></tr>
+<tr><td>抖音视频发布</td><td>003灵鹊组</td><td>自动发布</td></tr>
+<tr><td>AI图片生成</td><td>003灵鹊组</td><td>即梦/ComfyUI</td></tr>
+<tr><td>新闻/资讯收集</td><td>003灵鹊组</td><td>每日简报</td></tr>
+<tr><td>客诉处理</td><td>005磐石组</td><td>交付保障</td></tr>
+</table>
+
+<h3>3.2 自动化工作流示例</h3>
+<pre><code>每日09:00定时触发
+    ↓
+主Agent接收任务
+    ↓
+分发至003灵鹊组
+    ↓
+003使用 multi-search-engine 收集新闻
+    ↓
+003使用 image-gen 生成配图
+    ↓
+003保存文件 + 飞书通知
+    ↓
+主Agent汇报给用户</code></pre>
+
+<h2 id="rules">四、调度规则设计</h2>
+
+<h3>4.1 异常处理机制</h3>
+<pre><code>// 超时处理
+async function spawnWithTimeout(agentId, task, timeout = 60000) {
+  return Promise.race([
+    spawnAgent(agentId, task),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Task timeout')), timeout)
+    )
+  ]);
+}
+
+// 重试机制
+async function spawnWithRetry(agentId, task, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await spawnAgent(agentId, task);
+    } catch (e) {
+      if (i === retries - 1) throw e;
+      await sleep(1000 * (i + 1));
+    }
+  }
+}</code></pre>
+
+<h2 id="feishu">五、飞书机器人集成</h2>
+
+<h3>5.1 多账号配置</h3>
+<pre><code>"channels": {
+  "feishu": {
+    "accounts": {
+      "main": { "appId": "cli_main" },
+      "002": { "appId": "cli_002" },
+      "003": { "appId": "cli_003" }
+    }
+  }
+}</code></pre>
+
+<h3>5.2 定时任务配置</h3>
+<pre><code>{
+  "cron": {
+    "jobs": [{
+      "id": "daily-news",
+      "schedule": "0 9 * * *",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "收集今日新闻简报并发送飞书"
+      },
+      "sessionTarget": "isolated"
+    }]
+  }
+}</code></pre>
+
+<h2 id="perf">六、性能优化</h2>
+
+<h3>6.1 并发控制</h3>
+<pre><code>const CONCURRENCY_LIMIT = 4;
+const taskQueue = [];
+
+async function limitedSpawn(task) {
+  if (taskQueue.length >= CONCURRENCY_LIMIT) {
+    await Promise.race(taskQueue);
+  }
+  const promise = spawnAgent(task.agentId, task.message);
+  taskQueue.push(promise);
+  return promise;
+}</code></pre>
+
+<h3>6.2 缓存策略</h3>
+<pre><code>// 对于频繁请求的数据（如新闻、天气）使用缓存
+const cache = new Map();
+const CACHE_TTL = 3600000; // 1小时
+
+function getCached(key, fetcher) {
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.time < CACHE_TTL) {
+    return cached.data;
+  }
+  return fetcher();
+}</code></pre>
+
+<div class="note">📚 下一篇：<a href="travel-ai.html" style="color:#f5a623">《旅游业务AI化》→</a></div>
+</div>
+
+<div class="nav-bottom">
+<a href="short-video-creation.html" class="nav-btn">← 短视频创作</a>
+<a href="travel-ai.html" class="nav-btn next">下一篇：旅游业务AI化 →</a>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
