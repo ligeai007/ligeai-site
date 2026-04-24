@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="李哥AI加油站 - 专注AI实战，让AI成为你的超级助理。覆盖OpenClaw配置、图像生成、短视频创作、自动化办公全场景实战教学。">
+<title>李哥AI加油站 - 专注AI实战，让AI成为你的超级助理</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0a14;color:#e0e0e0;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:#f5a623;border-radius:3px}
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 60px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo span{font-size:28px;margin-right:6px}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:15px;color:#9999bb;transition:color 0.3s;position:relative}
+.nav-links a:hover{color:#fff}
+.nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:linear-gradient(90deg,#f5a623,#ff6b35);transition:width 0.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,#f5a623,#ff6b35);color:#fff;border:none;padding:9px 22px;border-radius:25px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 24px rgba(245,166,35,0.25)}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(245,166,35,0.4)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(245,166,35,0.1) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,107,53,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(245,166,35,0.7);animation:float 6s ease-in-out infinite;pointer-events:none}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:0.5}50%{transform:translateY(-50px) scale(1.8);opacity:1}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.3);padding:6px 18px;border-radius:50px;font-size:13px;color:#f5a623;margin-bottom:28px;position:relative;z-index:1;animation:pulse-badge 2s ease-in-out infinite}
+@keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,0.2)}50%{box-shadow:0 0 0 8px rgba(245,166,35,0)}}
+.hero h1{font-size:clamp(42px,6vw,72px);font-weight:900;line-height:1.15;margin-bottom:20px;position:relative;z-index:1}
+.hero h1 .line1{color:#fff}
+.hero h1 .line2{background:linear-gradient(135deg,#f5a623,#ff6b35,#ff3e3e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:18px;color:#8888aa;max-width:580px;margin-bottom:44px;line-height:1.8;position:relative;z-index:1}
+.hero-btns{display:flex;gap:18px;position:relative;z-index:1}
+.btn-primary{background:linear-gradient(135deg,#f5a623,#ff6b35);color:#fff;padding:14px 36px;border-radius:50px;font-size:16px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 24px rgba(245,166,35,0.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(245,166,35,0.5)}
+.btn-secondary{background:rgba(255,255,255,0.06);color:#ccccee;padding:14px 36px;border-radius:50px;font-size:16px;font-weight:600;border:1px solid rgba(255,255,255,0.12);cursor:pointer;transition:all 0.3s}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)}
+.stats-bar{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);padding:40px 60px;display:flex;justify-content:center;gap:100px;position:relative;z-index:1;flex-wrap:wrap}
+.stat-item{text-align:center;position:relative}
+.stat-item::after{content:"";position:absolute;right:-50px;top:50%;transform:translateY(-50%);width:1px;height:40px;background:rgba(255,255,255,0.08)}
+.stat-item:last-child::after{display:none}
+.stat-num{font-size:40px;font-weight:900;background:linear-gradient(135deg,#f5a623,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:13px;color:#7777aa;margin-top:4px;letter-spacing:1px}
+.section{padding:100px 60px}
+.section-header{text-align:center;margin-bottom:70px}
+.section-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#f5a623;margin-bottom:14px}
+.section-title{font-size:38px;font-weight:900;color:#fff;margin-bottom:14px}
+.section-desc{font-size:15px;color:#7777aa;max-width:520px;margin:0 auto;line-height:1.8}
+.services{background:#0d0d1c}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.service-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:36px 28px;transition:all 0.4s;position:relative;overflow:hidden;cursor:pointer}
+.service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f5a623,#ff6b35,#ff3e3e);opacity:0;transition:opacity 0.3s}
+.service-card:hover{transform:translateY(-8px);border-color:rgba(245,166,35,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.service-card:hover::before{opacity:1}
+.service-icon{font-size:44px;margin-bottom:20px;display:block}
+.service-card h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:10px}
+.service-card p{font-size:14px;color:#8888aa;line-height:1.75}
+.service-tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;margin-top:14px;font-weight:600}
+.tag-hot{background:rgba(255,62,62,0.15);color:#ff6b6b;border:1px solid rgba(255,62,62,0.2)}
+.tag-new{background:rgba(34,204,102,0.12);color:#22cc66;border:1px solid rgba(34,204,102,0.2)}
+.tag-pro{background:rgba(100,150,255,0.12);color:#88aaff;border:1px solid rgba(100,150,255,0.2)}
+.tag-rec{background:rgba(245,166,35,0.12);color:#f5a623;border:1px solid rgba(245,166,35,0.2)}
+.why-us{background:#0a0a14}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1100px;margin:0 auto;align-items:center}
+.why-left h3{font-size:32px;font-weight:800;color:#fff;margin-bottom:20px;line-height:1.3}
+.why-left h3 span{background:linear-gradient(135deg,#f5a623,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.why-left p{font-size:15px;color:#8888aa;line-height:1.8;margin-bottom:24px}
+.why-list{list-style:none}
+.why-list li{display:flex;align-items:center;gap:10px;font-size:15px;color:#aaaacc;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.why-list li::before{content:"✅";font-size:16px}
+.why-right{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.why-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px 16px;text-align:center;transition:all 0.3s}
+.why-card:hover{transform:translateY(-4px);border-color:rgba(245,166,35,0.3)}
+.why-card-icon{font-size:32px;margin-bottom:10px}
+.why-card h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.why-card p{font-size:12px;color:#7777aa}
+.courses{background:#0d0d1c}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.course-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:18px;overflow:hidden;transition:all 0.4s;cursor:pointer}
+.course-card:hover{transform:translateY(-8px);box-shadow:0 24px 70px rgba(0,0,0,0.6)}
+.course-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden}
+.course-thumb.t1{background:linear-gradient(135deg,#1a0536,#2d1b69,#4a1f6e)}
+.course-thumb.t2{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)}
+.course-thumb.t3{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)}
+.course-thumb.t4{background:linear-gradient(135deg,#2d1b69,#1a0536,#4a1f6e)}
+.course-body{padding:24px}
+.course-body h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.course-body p{font-size:13px;color:#7777aa;line-height:1.6;margin-bottom:16px}
+.course-meta{display:flex;justify-content:space-between;align-items:center}
+.course-level{font-size:12px;color:#f5a623;font-weight:600}
+.course-duration{font-size:12px;color:#6666aa}
+.testimonials{background:#0a0a14}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.testimonial-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:28px;transition:all 0.3s}
+.testimonial-card:hover{transform:translateY(-4px);border-color:rgba(245,166,35,0.25)}
+.testimonial-stars{font-size:16px;margin-bottom:12px}
+.testimonial-text{font-size:14px;color:#aaaacc;line-height:1.75;margin-bottom:16px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#ff6b35);display:flex;align-items:center;justify-content:center;font-size:18px}
+.testimonial-name{font-size:14px;font-weight:600;color:#ddddee}
+.testimonial-role{font-size:12px;color:#7777aa}
+.pricing{background:#0d0d1c}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:900px;margin:0 auto;align-items:center}
+.price-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:40px 28px;text-align:center;transition:all 0.4s;position:relative}
+.price-card.featured{border-color:rgba(245,166,35,0.4);background:rgba(245,166,35,0.05);transform:scale(1.05);box-shadow:0 20px 60px rgba(245,166,35,0.15)}
+.price-card:hover{transform:translateY(-6px)}
+.price-card.featured:hover{transform:scale(1.05) translateY(-6px)}
+.price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f5a623,#ff6b35);color:#fff;font-size:12px;font-weight:700;padding:4px 20px;border-radius:20px}
+.price-icon{font-size:40px;margin-bottom:16px}
+.price-name{font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.price-desc{font-size:13px;color:#7777aa;margin-bottom:16px}
+.price-amount{font-size:36px;font-weight:900;color:#f5a623;margin-bottom:4px}
+.price-amount span{font-size:16px;color:#7777aa;font-weight:400}
+.price-unit{font-size:13px;color:#6666aa;margin-bottom:24px}
+.price-features{list-style:none;text-align:left;margin-bottom:28px}
+.price-features li{font-size:14px;color:#aaaacc;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:"✓";color:#22cc66;font-weight:bold;font-size:12px}
+.price-features li.disabled{color:#5555777;text-decoration:line-through}
+.price-features li.disabled::before{content:"✗";color:#5555777}
+.price-btn{width:100%;padding:13px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;border:none}
+.price-btn-primary{background:linear-gradient(135deg,#f5a623,#ff6b35);color:#fff}
+.price-btn-primary:hover{box-shadow:0 6px 24px rgba(245,166,35,0.4)}
+.price-btn-secondary{background:rgba(255,255,255,0.08);color:#aaaacc;border:1px solid rgba(255,255,255,0.1)}
+.price-btn-secondary:hover{background:rgba(255,255,255,0.12);color:#fff}
+.faq{background:#0a0a14}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid rgba(255,255,255,0.07);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color 0.3s}
+.faq-item:hover{border-color:rgba(245,166,35,0.3)}
+.faq-q{padding:18px 22px;font-size:15px;font-weight:600;color:#ddddee;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);transition:background 0.3s}
+.faq-q:hover{background:rgba(255,255,255,0.04)}
+.faq-q::after{content:"+";font-size:20px;color:#f5a623;transition:transform 0.3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;font-size:14px;color:#8888aa;line-height:1.8;padding:0 22px}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+.about{background:#0d0d1c}
+.about-inner{max-width:800px;margin:0 auto;text-align:center}
+.about-avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#ff6b35);display:flex;align-items:center;justify-content:center;font-size:48px;margin:0 auto 24px;box-shadow:0 0 50px rgba(245,166,35,0.25)}
+.about h2{font-size:30px;font-weight:800;color:#fff;margin-bottom:16px}
+.about p{font-size:15px;color:#8888aa;line-height:1.9;margin-bottom:32px}
+.about-contact{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.contact-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:10px 22px;border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.contact-item:hover{border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.05)}
+.contact-item span:first-child{font-size:20px}
+.cta-section{background:linear-gradient(135deg,#1a0f00,#2d1b00,#1a0f00);border-top:1px solid rgba(245,166,35,0.15);border-bottom:1px solid rgba(245,166,35,0.15);padding:80px 60px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(245,166,35,0.08) 0%,transparent 70%);pointer-events:none}
+.cta-section h2{font-size:34px;font-weight:800;color:#fff;margin-bottom:14px;position:relative;z-index:1}
+.cta-section p{font-size:16px;color:#9999bb;margin-bottom:36px;position:relative;z-index:1}
+.cta-btn{background:linear-gradient(135deg,#f5a623,#ff6b35);color:#fff;padding:16px 48px;border-radius:50px;font-size:17px;font-weight:700;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(245,166,35,0.4);transition:all 0.3s;position:relative;z-index:1}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(245,166,35,0.5)}
+.footer{background:#070710;border-top:1px solid rgba(255,255,255,0.05);padding:48px 60px 28px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto 32px}
+.footer-logo{font-size:20px;font-weight:800;background:linear-gradient(135deg,#f5a623,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+.footer-desc{font-size:13px;color:#6666aa;line-height:1.7;margin-bottom:16px}
+.footer-col h4{font-size:14px;font-weight:700;color:#ddddee;margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:#7777aa;padding:5px 0;transition:color 0.3s}
+.footer-col a:hover{color:#f5a623}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:13px;color:#5555777}
+.footer-contact{display:flex;gap:16px;flex-wrap:wrap}
+.footer-contact-item{font-size:13px;color:#7777aa;display:flex;align-items:center;gap:6px}
+.footer-contact-item img{width:16px;height:16px}
+@media(max-width:1024px){.footer-top{grid-template-columns:1fr 1fr}.why-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.navbar{padding:0 20px}.nav-links,.nav-cta{display:none}.hero h1{font-size:34px}.section{padding:60px 20px}.stats-bar{gap:24px;padding:28px 20px}.stat-num{font-size:28px}.stat-item::after{display:none}.footer{padding:32px 20px}.footer-top{grid-template-columns:1fr;gap:24px}.footer-bottom{flex-direction:column;gap:12px}.price-card.featured{transform:scale(1)}.price-card.featured:hover{transform:translateY(-6px)}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="#services">服务项目</a>
+<a href="#courses">教程中心</a>
+<a href="#pricing">价格方案</a>
+<a href="#faq">常见问题</a>
+<a href="#about">关于李哥</a>
+</div>
+<button class="nav-cta" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">开始学习 →</button>
+</nav>
+
+<section class="hero">
+<div class="hero-grid"></div>
+<div class="particle" style="top:20%;left:15%;animation-delay:0s"></div>
+<div class="particle" style="top:60%;left:80%;animation-delay:1.5s;background:rgba(255,107,53,0.6)"></div>
+<div class="particle" style="top:30%;left:70%;animation-delay:3s"></div>
+<div class="particle" style="top:75%;left:25%;animation-delay:2s;background:rgba(255,62,62,0.5)"></div>
+<div class="particle" style="top:15%;left:55%;animation-delay:4s;background:rgba(100,150,255,0.6)"></div>
+<div class="hero-badge">🔥 全网独家AI加油站 · 免费试学</div>
+<h1><span class="line1">专注AI实战</span><br><span class="line2">让AI成为你的超级助理</span></h1>
+<p class="hero-sub">从0到1掌握AI工具链，覆盖OpenClaw、图像生成、短视频创作、<br>自动化办公、私域运营全场景实战教学</p>
+<div class="hero-btns">
+<button class="btn-primary" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">🚀 立即试学</button>
+<button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">了解更多</button>
+</div>
+</section>
+
+<div class="stats-bar">
+<div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">精选教程</div></div>
+<div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">AI技能配置</div></div>
+<div class="stat-item"><div class="stat-num">2000+</div><div class="stat-label">学员人数</div></div>
+<div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">好评率</div></div>
+</div>
+
+<section class="section services" id="services">
+<div class="section-header">
+<div class="section-tag">Services</div>
+<div class="section-title">我们的服务</div>
+<div class="section-desc">一站式AI解决方案，覆盖你想要的每一个场景</div>
+</div>
+<div class="services-grid">
+<div class="service-card"><span class="service-icon">🤖</span><h3>OpenClaw配置</h3><p>从零搭建AI助手，安装配置技能、浏览器、自动化工具链，全程实战指导</p><span class="service-tag tag-hot">热门</span></div>
+<div class="service-card"><span class="service-icon">🎨</span><h3>AI图片生成</h3><p>即梦AI、火山引擎、Midjourney、ComfyUI实战，生成海报，配图、IP形象</p><span class="service-tag tag-new">新增</span></div>
+<div class="service-card"><span class="service-icon">🎬</span><h3>短视频创作</h3><p>小红书、抖音内容策划，AI脚本创作，CapCut/剪映剪辑，流量打法全公开</p><span class="service-tag tag-pro">实战</span></div>
+<div class="service-card"><span class="service-icon">📊</span><h3>智能体开发</h3><p>多Agent系统搭建，子任务分发与调度，自动化工作流设计，提升团队效能</p><span class="service-tag tag-hot">热门</span></div>
+<div class="service-card"><span class="service-icon">✈️</span><h3>旅游业务AI化</h3><p>旅行社地接全流程AI运营，客群获取、行程规划、智能客服、携程运营指南</p><span class="service-tag tag-new">专项</span></div>
+<div class="service-card"><span class="service-icon">💼</span><h3>自动化办公</h3><p>飞书文档、多维表格自动化，数据收集整理，报表生成，效率提升10倍+</p><span class="service-tag tag-rec">推荐</span></div>
+</div>
+</section>
+
+<section class="section why-us">
+<div class="why-grid">
+<div class="why-left">
+<h3>为什么选择<br><span>李哥AI加油站？</span></h3>
+<p>不纸上谈兵，每一个教程都来自真实业务场景。学完即可落地，效果看得见。</p>
+<ul class="why-list">
+<li>来自真实业务场景，非纸上谈兵</li>
+<li>详细步骤拆解，零基础也能上手</li>
+<li>一次付费，永久享用更新内容</li>
+<li>遇到问题专属答疑支持</li>
+<li>覆盖AI全场景实战技能</li>
+</ul>
+</div>
+<div class="why-right">
+<div class="why-card"><div class="why-card-icon">🎯</div><h4>实战导向</h4><p>学完即落地</p></div>
+<div class="why-card"><div class="why-card-icon">⚡</div><h4>快速上手</h4><p>10分钟见效</p></div>
+<div class="why-card"><div class="why-card-icon">🔄</div><h4>持续更新</h4><p>与时俱进</p></div>
+<div class="why-card"><div class="why-card-icon">💬</div><h4>专属答疑</h4><p>专属服务</p></div>
+</div>
+</div>
+</section>
+
+<section class="section courses" id="courses">
+<div class="section-header">
+<div class="section-tag">Courses</div>
+<div class="section-title">教程中心</div>
+<div class="section-desc">精选实战教程，由浅入深，快速上手</div>
+</div>
+<div class="courses-grid">
+<a href="pages/tutorials/openclaw-setup.html" style="text-decoration:none;display:block"><div class="course-card" style="cursor:pointer"><div class="course-thumb t1">🤖</div><div class="course-body"><h3>OpenClaw零基础入门</h3><p>手把手教你安装配置OpenClaw，告别配置烦恼，快速搭建属于自己的AI助理</p><div class="course-meta"><span class="course-level">⭐ 入门</span><span class="course-duration">⏱ 约45分钟</span></div></div></div></a>
+<a href="pages/tutorials/ai-image-generation.html" style="text-decoration:none;display:block"><div class="course-card" style="cursor:pointer"><div class="course-thumb t2">🎨</div><div class="course-body"><h3>即梦AI图片生成实战</h3><p>火山引擎即梦AI全攻略：文生图、图生图、字体设计、商业海报制作</p><div class="course-meta"><span class="course-level">⭐⭐ 进阶</span><span class="course-duration">⏱ 约60分钟</span></div></div></div></a>
+<a href="pages/tutorials/short-video-creation.html" style="text-decoration:none;display:block"><div class="course-card" style="cursor:pointer"><div class="course-thumb t3">🎬</div><div class="course-body"><h3>短视频创作实战</h3><p>小红书、抖音内容策划，AI脚本创作，CapCut/剪映剪辑，流量打法全公开</p><div class="course-meta"><span class="course-level">⭐⭐ 进阶</span><span class="course-duration">⏱ 约90分钟</span></div></div></div></a>
+<a href="pages/tutorials/travel-ai.html" style="text-decoration:none;display:block"><div class="course-card" style="cursor:pointer"><div class="course-thumb t4">✈️</div><div class="course-body"><h3>旅行社AI运营实战课</h3><p>地接社全链路AI化：获客话术、行程规划、携程运营、飞书自动化</p><div class="course-meta"><span class="course-level">⭐⭐⭐ 高阶</span><span class="course-duration">⏱ 约120分钟</span></div></div></div></a>
+<a href="pages/tutorials/ai-agent-development.html" style="text-decoration:none;display:block;color:inherit"><div class="course-card" style="cursor:pointer"><div class="course-thumb" style="background:linear-gradient(135deg,#1a3a1a,#2d4a2d,#1a3a1a)">📊</div><div class="course-body"><h3>智能体开发</h3><p>多Agent系统搭建，子任务分发与调度，自动化工作流设计，提升团队效能</p><div class="course-meta"><span class="course-level">⭐⭐⭐ 高阶</span><span class="course-duration">⏱ 约120分钟</span></div></div></div></a>
+<a href="pages/tutorials/office-automation.html" style="text-decoration:none;display:block;color:inherit"><div class="course-card" style="cursor:pointer"><div class="course-thumb" style="background:linear-gradient(135deg,#1a1a3a,#2d2d4a,#1a1a3a)">💼</div><div class="course-body"><h3>自动化办公</h3><p>飞书文档、多维表格自动化，数据收集整理，报表生成，效率提升10倍+</p><div class="course-meta"><span class="course-level">⭐⭐ 进阶</span><span class="course-duration">⏱ 约90分钟</span></div></div></div></a>
+</div>
+</section>
+
+<section class="section testimonials">
+<div class="section-header">
+<div class="section-tag">Testimonials</div>
+<div class="section-title">学员评价</div>
+<div class="section-desc">听听已学习的小伙伴怎么说</div>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"李哥的OpenClaw配置教程真的超级详细！从零开始搭建了自己的AI助理，现在每天工作节省大量时间，强烈推荐！"</p>
+<div class="testimonial-author"><div class="testimonial-avatar">🚀</div><div><div class="testimonial-name">张先生</div><div class="testimonial-role">成都 · 旅行社老板</div></div></div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"即梦AI生成图片的教程太实用了！学完就做出了第一张商业海报，效果完全不输专业设计师，省了大几千块！"</p>
+<div class="testimonial-author"><div class="testimonial-avatar">💡</div><div><div class="testimonial-name">王女士</div><div class="testimonial-role">深圳 · 电商运营</div></div></div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"小红书运营教程非常接地气！用AI辅助写文案，笔记流量翻了3倍，李哥的答疑服务也很及时，真的很值！"</p>
+<div class="testimonial-author"><div class="testimonial-avatar">📈</div><div><div class="testimonial-name">李女士</div><div class="testimonial-role">广州 · 私域运营</div></div></div>
+</div>
+</div>
+</section>
+
+<section class="section pricing" id="pricing">
+<div class="section-header">
+<div class="section-tag">Pricing</div>
+<div class="section-title">价格方案</div>
+<div class="section-desc">选择最适合你的学习方案</div>
+</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price-icon">🆓</div>
+<div class="price-name">免费试学</div>
+<div class="price-desc">先体验再决定</div>
+<div class="price-amount">¥0 <span></span></div>
+<div class="price-unit">永久免费</div>
+<ul class="price-features">
+<li>免费试学公开内容</li>
+<li>浏览部分教程</li>
+<li>加入学员社群</li>
+<li class="disabled">深度答疑支持</li>
+</ul>
+<button class="price-btn price-btn-secondary">无需注册，直接试学</button>
+</div>
+<div class="price-card featured">
+<div class="price-badge">🔥 最受欢迎</div>
+<div class="price-icon">⚡</div>
+<div class="price-name">尊享会员</div>
+<div class="price-desc">全站课程无限学</div>
+<div class="price-amount">¥299 <span>/年</span></div>
+<div class="price-unit">一次付费，永久更新</div>
+<ul class="price-features">
+<li>全站所有课程无限学</li>
+<li>专属答疑群尊享服务</li>
+<li>优先获取最新教程</li>
+<li>可下载学习资料</li>
+</ul>
+<button class="price-btn price-btn-primary">立即开通会员</button>
+</div>
+<div class="price-card">
+<div class="price-icon">👑</div>
+<div class="price-name">1对1定制</div>
+<div class="price-desc">专属定制学习方案</div>
+<div class="price-amount">¥1999 <span>/次</span></div>
+<div class="price-unit">按需定制，长期服务</div>
+<ul class="price-features">
+<li>专属学习方案定制</li>
+<li>1对1深度答疑</li>
+<li>项目实战陪跑</li>
+<li>永久社群服务</li>
+</ul>
+<button class="price-btn price-btn-secondary">联系李哥</button>
+</div>
+</div>
+</section>
+
+<section class="section faq" id="faq">
+<div class="section-header">
+<div class="section-tag">FAQ</div>
+<div class="section-title">常见问题</div>
+<div class="section-desc">你关心的问题，这里都有答案</div>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-q">零基础可以学习吗？</div>
+<div class="faq-a">当然可以！我们的教程专门为零基础学员设计，详细步骤拆解，跟着做就能学会。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">教程更新收费吗？</div>
+<div class="faq-a">尊享会员一次付费，永久享用所有更新内容，无需额外付费。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">有问题怎么咨询？</div>
+<div class="faq-a">购买后加入专属答疑群，或直接微信 ligiai007 联系李哥。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">教程适合哪些人？</div>
+<div class="faq-a">创业者、职场人士、电商运营、旅游从业者、想用AI提效的任何人。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">付款方式有哪些？</div>
+<div class="faq-a">支持微信、支付宝转账，联系李哥（微信：ligiai007）直接付款。</div>
+</div>
+</div>
+</section>
+
+<section class="section about" id="about">
+<div class="about-inner">
+<div class="about-avatar">👨‍💼</div>
+<h2>关于李哥</h2>
+<p>李哥，多年互联网从业者，AI工具深度用户。<br>专注OpenClaw智能体配置、图像生成、短视频创作、旅游业务AI化等实战领域。<br>「李哥AI加油站」致力于分享最接地气的AI实战经验，让更多人享受AI红利。</p>
+<div class="about-contact">
+<div class="contact-item"><span>💬</span>微信：ligiai007</div>
+<div class="contact-item"><span>📧</span>邮箱：1138002652@qq.com</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<h2>立即开始你的AI之旅</h2>
+<p>从今天起，让AI成为你的超级助理！</p>
+<button class="cta-btn" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">🚀 立即试学</button>
+</section>
+
+<footer class="footer">
+<div class="footer-top">
+<div class="footer-brand">
+<div class="footer-logo">⚡ 李哥AI加油站</div>
+<p class="footer-desc">专注AI实战，让AI成为每个人的超级助理。全网独家AI加油站，从入门到精通全覆盖。</p>
+<div class="about-contact">
+<div class="contact-item"><span>💬</span>微信：ligiai007</div>
+<div class="contact-item"><span>📧</span>1138002652@qq.com</div>
+</div>
+</div>
+<div class="footer-col">
+<h4>快速导航</h4>
+<a href="#services">服务项目</a>
+<a href="#courses">教程中心</a>
+<a href="#pricing">价格方案</a>
+<a href="#faq">常见问题</a>
+</div>
+<div class="footer-col">
+<h4>热门课程</h4>
+<a href="#courses">OpenClaw入门</a>
+<a href="#courses">即梦AI实战</a>
+<a href="#courses">小红书运营</a>
+<a href="#courses">AI办公自动化</a>
+</div>
+<div class="footer-col">
+<h4>联系我们</h4>
+<a href="#">微信：ligiai007</a>
+<a href="#">邮箱：1138002652@qq.com</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+        var item = q.parentElement;
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+    });
+});
+window.addEventListener('scroll', function() {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+</script>
+</body>
+</html>
