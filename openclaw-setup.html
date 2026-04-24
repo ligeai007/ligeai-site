@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw零基础入门 - 李哥AI加油站</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.tutorial-page{min-height:100vh;padding-top:80px;background:#0a0a14}
+.tutorial-header{background:linear-gradient(135deg,#1a0536,#2d1b69,#4a1f6e);padding:80px 60px;text-align:center}
+.tutorial-header .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#f5a623;margin-bottom:14px}
+.tutorial-header h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.tutorial-header .meta{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:#aaaacc}
+.tutorial-body{max-width:900px;margin:0 auto;padding:60px 40px}
+.toc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin-bottom:48px}
+.toc h3{font-size:16px;font-weight:700;color:#f5a623;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;color:#8888aa}
+.toc li::before{content:counter(toc) ". ";color:#f5a623;font-weight:600}
+.toc li a{color:#8888aa;transition:color 0.2s}
+.toc li a:hover{color:#f5a623}
+.content h2{font-size:24px;font-weight:800;color:#fff;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.content h3{font-size:18px;font-weight:700;color:#f5a623;margin:28px 0 12px}
+.content p{font-size:15px;color:#aaaacc;line-height:1.85;margin-bottom:12px}
+.content ul,.content ol{list-style:none;margin-bottom:16px}
+.content li{padding:5px 0;font-size:14px;color:#8888aa;padding-left:20px;position:relative;line-height:1.7}
+.content li::before{content:"•";color:#f5a623;position:absolute;left:0}
+.content pre{background:#0d0d1c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin:16px 0;overflow-x:auto}
+.content code{font-family:"Fira Code","Cascadia Code",monospace;font-size:13px;color:#f5a623;background:#1a1a2e;padding:2px 6px;border-radius:4px}
+.content pre code{background:none;padding:0;color:#e0e0e0;font-size:13px}
+.content .note{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14px;color:#f5a623}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content th{background:rgba(245,166,35,0.1);color:#f5a623;padding:10px 14px;text-align:left;font-weight:600}
+.content td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#aaaacc}
+.content tr:hover td{background:rgba(255,255,255,0.02)}
+.nav-bottom{display:flex;justify-content:space-between;padding:40px 60px;border-top:1px solid rgba(255,255,255,0.06);max-width:900px;margin:0 auto}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;font-size:14px;color:#aaaacc;transition:all 0.3s}
+.nav-btn:hover{border-color:#f5a623;color:#f5a623}
+.nav-btn.next{color:#f5a623}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo"><span>⚡</span>李哥AI加油站</div>
+<div class="nav-links">
+<a href="../index.html#services">服务项目</a>
+<a href="../index.html#courses">教程中心</a>
+<a href="../index.html#pricing">价格方案</a>
+<a href="../index.html#about">关于李哥</a>
+</div>
+<a href="../index.html" class="nav-btn" style="padding:8px 18px;font-size:14px">← 返回首页</a>
+</nav>
+
+<div class="tutorial-page">
+<div class="tutorial-header">
+<div class="tag">🤖 OpenClaw配置</div>
+<h1>OpenClaw零基础入门</h1>
+<p style="font-size:16px;color:#aaaacc;max-width:600px;margin:0 auto">手把手教你安装配置OpenClaw，告别配置烦恼，快速搭建属于自己的AI助理</p>
+<div class="meta"><span>⭐ 入门</span><span>⏱ 约45分钟</span><span>👨‍💼 李哥</span></div>
+</div>
+
+<div class="tutorial-body content">
+<div class="toc">
+<h3>📖 目录</h3>
+<ol>
+<li><a href="#install">安装OpenClaw</a></li>
+<li><a href="#config">配置文件详解</a></li>
+<li><a href="#skills">技能管理</a></li>
+<li><a href="#browser">浏览器自动化</a></li>
+<li><a href="#feishu">飞书集成配置</a></li>
+<li><a href="#multiagent">多Agent系统</a></li>
+<li><a href="#qa">常见问题</a></li>
+</ol>
+</div>
+
+<h2 id="install">一、安装OpenClaw</h2>
+
+<h3>1.1 环境准备</h3>
+<p>安装前请确认已安装Node.js 18+（推荐Node 20）：</p>
+<pre><code>node -v    # 应显示 v18.x 或更高
+npm -v     # 应显示 9.x 或更高</code></pre>
+<p>下载地址：<a href="https://nodejs.org" style="color:#f5a623">https://nodejs.org</a></p>
+
+<h3>1.2 安装OpenClaw</h3>
+<pre><code>npm install -g openclaw
+openclaw --version</code></pre>
+
+<h3>1.3 初始化配置</h3>
+<pre><code>openclaw init</code></pre>
+<p>按提示填写名字、时区（Asia/Shanghai）、默认模型（建议MiniMax-M2.7）。</p>
+
+<h2 id="config">二、配置文件详解</h2>
+
+<h3>2.1 配置文件位置</h3>
+<p>Windows: <code>C:\Users\用户名\.openclaw\openclaw.json</code></p>
+
+<h3>2.2 核心配置项</h3>
+<pre><code>{
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "models": {
+    "providers": {
+      "minimax": {
+        "apiKey": "你的API Key"
+      }
+    }
+  }
+}</code></pre>
+
+<h3>2.3 模型配置示例</h3>
+<pre><code>"minimax": {
+  "baseUrl": "https://api.minimaxi.com/anthropic",
+  "apiKey": "sk-你的密钥",
+  "models": [{
+    "id": "MiniMax-M2.7",
+    "contextWindow": 200000
+  }]
+}</code></pre>
+
+<div class="note">💡 提示：MiniMax API Key在官网申请，个人开发者有免费额度。</div>
+
+<h2 id="skills">三、技能（Skills）管理</h2>
+
+<h3>3.1 技能安装</h3>
+<p>技能存放目录：<code>~/.openclaw/skills/</code></p>
+<p>每个技能是一个独立文件夹，包含 <code>SKILL.md</code> 说明文件。</p>
+
+<h3>3.2 常用技能推荐</h3>
+<table>
+<tr><th>技能名称</th><th>功能</th></tr>
+<tr><td>travel-planner-pro</td><td>旅行规划、景点推荐</td></tr>
+<tr><td>douyin-publisher</td><td>自动发布视频到抖音</td></tr>
+<tr><td>xiaohongshu-post</td><td>图文笔记自动发布</td></tr>
+<tr><td>feishu-doc</td><td>读写飞书云文档</td></tr>
+<tr><td>image-gen</td><td>AI绘图工具</td></tr>
+</table>
+
+<h2 id="browser">四、浏览器自动化配置</h2>
+
+<h3>4.1 启用浏览器</h3>
+<pre><code>"browser": {
+  "enabled": true,
+  "defaultProfile": "user"
+}</code></pre>
+
+<h3>4.2 Chrome远程调试</h3>
+<pre><code># Windows - 关闭Chrome后执行
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222</code></pre>
+<p>启动Chrome后保持运行，再启动OpenClaw即可自动连接。</p>
+
+<h3>4.3 验证连接</h3>
+<pre><code>openclaw browser status</code></pre>
+<p>显示 "Chrome: ok" 即表示连接成功。</p>
+
+<h2 id="feishu">五、飞书集成配置</h2>
+
+<h3>5.1 创建飞书应用</h3>
+<p>1. 进入 <a href="https://open.feishu.cn/app" style="color:#f5a623">open.feishu.cn/app</a><br>
+2. 创建企业自建应用<br>
+3. 获取 App ID 和 App Secret</p>
+
+<h3>5.2 配置示例</h3>
+<pre><code>"channels": {
+  "feishu": {
+    "enabled": true,
+    "appId": "cli_xxxxxxxx",
+    "appSecret": "你的AppSecret"
+  }
+}</code></pre>
+
+<h2 id="multiagent">六、多Agent系统配置</h2>
+
+<h3>6.1 子Agent创建</h3>
+<pre><code>"agents": {
+  "list": [
+    {
+      "id": "002",
+      "name": "客户增长部（犀鸟组）",
+      "workspace": "~/.openclaw/workspace-002",
+      "model": "minimax/MiniMax-M2.7"
+    },
+    {
+      "id": "003",
+      "name": "品牌内容部（灵鹊组）",
+      "workspace": "~/.openclaw/workspace-003",
+      "model": "minimax/MiniMax-M2.7"
+    },
+    {
+      "id": "005",
+      "name": "交付保障部（磐石组）",
+      "workspace": "~/.openclaw/workspace-005",
+      "model": "minimax/MiniMax-M2.7"
+    }
+  ]
+}</code></pre>
+
+<h3>6.2 子Agent工作区</h3>
+<pre><code>mkdir ~/.openclaw/workspace-002
+mkdir ~/.openclaw/workspace-003
+mkdir ~/.openclaw/workspace-005</code></pre>
+
+<h2 id="qa">七、常见问题</h2>
+
+<h3>Q1：openclaw命令找不到？</h3>
+<p>解决：检查npm全局bin目录是否加入PATH</p>
+<pre><code>npm config get prefix
+# 将输出的路径加入系统PATH</code></pre>
+
+<h3>Q2：浏览器连接失败？</h3>
+<p>解决：确保Chrome已开启远程调试模式，版本≥144，端口9222未被占用。</p>
+
+<h3>Q3：飞书消息无法发送？</h3>
+<p>解决：检查App ID和App Secret是否正确，确认应用已启用机器人能力。</p>
+
+<div class="note">📚 下一篇：<a href="ai-image-generation.html" style="color:#f5a623">《AI图片生成实战》→</a></div>
+</div>
+
+<div class="nav-bottom">
+<a href="../index.html#courses" class="nav-btn">← 返回教程中心</a>
+<a href="ai-image-generation.html" class="nav-btn next">下一篇：AI图片生成实战 →</a>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 李哥AI加油站 · 用AI赋能每一个人</p>
+<div class="footer-contact">
+<span class="footer-contact-item">💬 微信：ligiai007</span>
+<span class="footer-contact-item">📧 1138002652@qq.com</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
